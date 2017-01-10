@@ -1,0 +1,379 @@
+$hadoken-bg: #6666ff;
+
+#back {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 500px;
+  height: 500px;
+  border: 1px solid #333;
+}
+
+.mountain {
+  overflow: hidden;
+  background: transparent;
+}
+#mountain1 {
+  top: 5px;
+  right: 1px;
+}
+
+#mountain2 {
+  top: 50px;
+  right: 1px;
+}
+
+
+#mountain3 {
+  top: 305px;
+  right: 1px;
+}
+
+.mountain::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: inherit;  /* 擬似要素は基本アニメーションしないけど、inheritすればアニメーションする */
+  right: inherit;
+  width: 40px;
+  height: 20px;
+  transform: skewX(-25deg) translate(10px, 20px);
+  background:linear-gradient(
+      45deg,
+      red,
+      red 50%,
+      transparent 50%,
+      transparent 100%);
+  /*background-color: red;*/
+}
+
+#mountain3::before {
+  width: 80px;
+  height: 40px;
+
+}
+
+#mountain1::before {
+  animation: mountain-animation 30s linear infinite;
+}
+#mountain2::before {
+  animation: mountain-animation 15s linear infinite;
+}
+#mountain3::before {
+  animation: mountain-animation 10s linear infinite;
+}
+
+@keyframes right-walk-animation {
+  0% {left: 10px; transform: rotate(30deg);}
+  50% {left: 20px; transform: rotate(-30deg);}
+  100% {left: 10px; transform: rotate(30deg);}
+}
+
+@keyframes left-walk-animation {
+  0% {left: 20px; transform: rotate(-30deg);}
+  50% {left: 10px; transform: rotate(30deg);}
+  100% {left: 20px; transform: rotate(-30deg);}
+}
+
+@keyframes human2-animation {
+  0% {left: 450px; top: 0px; transform: rotate(40deg);}
+  100% {left: 400px; top: 200px; transform: rotate(0deg);}
+}
+
+@keyframes mountain-animation {
+  from {right: 1px;}
+  to {right: 500px;}
+}
+
+@keyframes right-arm-animation {
+  0% {transform: rotate(20deg);}
+  100%{
+    transform: rotate(-50deg);
+    left: 25px;
+  }
+}
+
+@keyframes hadoken-animation {
+  0% {opacity: 0;}
+  100%{opacity: 100;}
+}
+
+@keyframes hadoken2-animation {
+  0% {opacity: 0;}
+  100%{opacity: 100;}
+}
+@keyframes hadoken2-animation2 {
+  0% {width: 30px;}
+  100% {width: 200px;}
+}
+
+@keyframes left-arm2-animation {
+  0% {opacity: 0;}
+  100%{opacity: 100;}
+}
+
+@keyframes right-arm2-animation {
+  0% {opacity: 0;}
+  100%{opacity: 100;}
+}
+
+@keyframes hide-arm-animation {
+  0% {opacity: 0;}
+  100%{opacity: 100;}
+}
+
+@mixin head {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid #333;
+}
+
+@mixin eye {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background-color: #333;
+  border: 1px solid #333;
+  border-radius: 1px;
+}
+
+@mixin mouth {
+  position: absolute;
+  width: 8px;
+  height: 1px;
+  background-color: #333; 
+}
+
+@mixin left-arm {
+  position: absolute;
+  top: 35px;
+  left: 19px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(-20deg);
+}
+
+@mixin right-arm {
+  position: absolute;
+  top: 35px;
+  left: 11px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(20deg);
+}
+
+@mixin left-leg {
+  position: absolute;
+  top: 59px;
+  left: 20px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(-30deg);
+  /*animation: left-walk-animation 2s ease infinite;*/
+}
+
+@mixin right-leg {
+  position: absolute;
+  top: 59px;
+  left: 10px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(30deg);
+  /*animation: right-walk-animation 2s ease infinite;*/
+}
+
+#human {
+  border: 1px solid #333;
+  width: 30px;
+  height: 100px;
+  position: absolute;
+  top: 200px;
+  left: 100px;
+  .head {
+    .eye {
+      @include eye;
+      top: 8px;
+      right: 5px;
+    }
+    .mouth {
+      @include mouth;
+      top: 8px;
+      right: 5px;
+    }
+  }
+}
+
+#human2 {
+  border: 1px solid #333;
+  width: 30px;
+  height: 100px;
+  position: absolute;
+  top: 200px;
+  left: 400px;
+  .head {
+    .eye { 
+      @include eye;
+      top: 8px;
+      left: 5px;
+    }
+    .mouth {
+      @include mouth;
+      top: 18px;
+      left: 5px;
+    }
+  }
+  .right-arm {
+    animation: right-arm-animation 0.5s ease forwards;
+    animation-play-state: paused;
+  }
+  .hadoken {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: $hadoken-bg;
+    opacity: 0;
+    animation: hadoken-animation 0.1s ease infinite;
+    animation-play-state: paused;
+  }
+  .hadoken2 {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid $hadoken-bg;
+    border-radius: 15px;
+    background-color: $hadoken-bg;
+    opacity: 0;
+    animation: 
+      hadoken2-animation 0.1s ease forwards,
+      hadoken2-animation2 0.3s linear forwards;
+    animation-play-state: paused;
+  }
+  .hadoken2:before {
+    position: absolute;
+    top: 0px;
+    left: -20px;
+    width: inherit;
+    height: 15px;
+    transform: skew(120deg);
+    display: block;
+    content: "";
+    background-color: $hadoken-bg;
+  }
+  .hadoken2:after{
+    position: absolute;
+    top: 15px;
+    left: -20px;
+    width: inherit;
+    height: 15px;
+    transform: skew(-120deg);
+    display: block;
+    content: "";
+    background-color: $hadoken-bg;
+  }
+
+  .left-arm2 {
+    position: absolute;
+    top: 35px;
+    left: 5px;
+    width: 1px;
+    height: 20px;
+    background-color: #333;
+    transform: rotate(50deg);
+    opacity: 0;
+    animation: left-arm2-animation 0.1s ease forwards;
+    animation-play-state: paused;
+  }
+  .right-arm2 {
+    position: absolute;
+    top: 25px;
+    left: 5px;
+    width: 1px;
+    height: 20px;
+    background-color: #333;
+    transform: rotate(120deg);
+    opacity: 0;
+    animation: right-arm2-animation 0.1s ease forwards;
+    animation-play-state: paused;
+  }
+  .hide-arm {
+    position: absolute;
+    top: 37px;
+    left: 16px;
+    width: 20px;
+    height: 25px;
+    background-color: #fff;
+    opacity: 0;
+    animation: hide-arm-animation 0.1s ease forwards;
+    animation-play-state: paused;
+  }
+  animation: human2-animation 0.5s ease 1;
+}
+
+#human, #human2 {
+ .head {@include head;}
+  .body {
+    position: absolute;
+    top: 31px;
+    left: 15px;
+    width: 1px;
+    height: 30px;
+    background-color: #333;
+  }
+  .left-arm {
+    @include left-arm;
+  }
+  .right-arm {
+    @include right-arm;
+  }
+  .left-leg {
+    @include left-leg;
+  }
+  .right-leg {
+    @include right-leg;
+  }
+}
+
+.chkbox {
+  padding-top: 0px;
+}
+
+.sound1 {
+  position: absolute;
+  top: 100px;
+  left: 300px;
+  font-size: 1px;
+  transition: all 0.1s linear 0;
+}
+
+#battle-start:checked ~ #human2 > .right-arm {
+  animation-play-state: running;
+}
+
+#battle-start:checked ~ #human2 > .hadoken {
+  animation-play-state: running;
+}
+
+#battle-start2:checked ~ #human2 > .hadoken2,
+#battle-start2:checked ~ #human2 > .left-arm2,
+#battle-start2:checked ~ #human2 > .right-arm2,
+#battle-start2:checked ~ #human2 > .hide-arm
+{
+  animation-play-state: running;
+}
+
+#battle-start2:checked ~ .sound1 {
+  font-size: 40px;
+  text-shadow: 1px 1px 0 #bbb, 2px 2px 0 #bbb, 3px 3px #bbb, 4px 4px #bbb;
+}

@@ -1,0 +1,232 @@
+$hadoken-bg: #6666ff;
+$bomb-color: #ef8905;
+
+#back {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 500px;
+  height: 500px;
+  border: 1px solid #333;
+}
+
+.mountain {
+  overflow: hidden;
+  background: transparent;
+}
+#mountain1 {
+  top: 5px;
+  right: 1px;
+}
+
+#mountain2 {
+  top: 50px;
+  right: 1px;
+}
+
+
+#mountain3 {
+  top: 305px;
+  right: 1px;
+}
+
+.mountain::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: inherit;  /* 擬似要素は基本アニメーションしないけど、inheritすればアニメーションする */
+  right: inherit;
+  width: 40px;
+  height: 20px;
+  transform: skewX(-25deg) translate(10px, 20px);
+  background:linear-gradient(
+      45deg,
+      red,
+      red 50%,
+      transparent 50%,
+      transparent 100%);
+  /*background-color: red;*/
+}
+
+#mountain3::before {
+  width: 80px;
+  height: 40px;
+
+}
+
+#mountain1::before {
+  animation: mountain-animation 30s linear infinite;
+}
+#mountain2::before {
+  animation: mountain-animation 15s linear infinite;
+}
+#mountain3::before {
+  animation: mountain-animation 10s linear infinite;
+}
+
+@keyframes mountain-animation {
+  from {right: 1px;}
+  to {right: 500px;}
+}
+
+@keyframes burst-animation {
+  0% {transform: scale(0.1, 0.1);}
+  100% {transform: scale(1.0, 1.0);}
+}
+
+@mixin head {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid #333;
+}
+
+@mixin eye {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background-color: #333;
+  border: 1px solid #333;
+  border-radius: 1px;
+}
+
+@mixin mouth {
+  position: absolute;
+  width: 8px;
+  height: 1px;
+  background-color: #333; 
+}
+
+@mixin left-arm {
+  position: absolute;
+  top: 35px;
+  left: 19px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(-20deg);
+}
+
+@mixin right-arm {
+  position: absolute;
+  top: 35px;
+  left: 11px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(20deg);
+}
+
+@mixin left-leg {
+  position: absolute;
+  top: 59px;
+  left: 20px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(-30deg);
+  /*animation: left-walk-animation 2s ease infinite;*/
+}
+
+@mixin right-leg {
+  position: absolute;
+  top: 59px;
+  left: 10px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(30deg);
+  /*animation: right-walk-animation 2s ease infinite;*/
+}
+
+#human {
+  width: 30px;
+  height: 100px;
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  .head {
+    .eye {
+      @include eye;
+      top: 8px;
+      right: 5px;
+    }
+    .mouth {
+      @include mouth;
+      top: 8px;
+      right: 5px;
+    }
+  }
+}
+
+#human, #human2 {
+ .head {@include head;}
+  .body {
+    position: absolute;
+    top: 31px;
+    left: 15px;
+    width: 1px;
+    height: 30px;
+    background-color: #333;
+  }
+  .left-arm {
+    @include left-arm;
+  }
+  .right-arm {
+    @include right-arm;
+  }
+  .left-leg {
+    @include left-leg;
+  }
+  .right-leg {
+    @include right-leg;
+  }
+}
+
+.chkbox {
+  padding-top: 0px;
+}
+
+.sound1 {
+  position: absolute;
+  top: 100px;
+  left: 300px;
+  font-size: 1px;
+  transition: all 0.1s linear 0;
+}
+
+.wrap-starburst {
+  position: absolute;
+  top: 200px;
+  left: 180px;
+  width: 100px;
+  height: 100px;
+
+  .starburst {
+    width: 50px;
+    height: 50px;
+    animation: burst-animation 0.3s linear infinite;
+    .star {
+      width:6em;
+      height:6em;
+      background: $bomb-color;
+      transform: rotate(22.5deg);
+    }
+  }
+}
+
+.sound1 {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  font-size: 40px;
+  text-shadow: 1px 1px 0 #bbb, 2px 2px 0 #bbb, 3px 3px #bbb, 4px 4px #bbb;
+}
+
+#burst-start:checked ~ .sound1 {
+  font-size: 4em;
+  font-family: "Impact";
+  text-shadow: 1px 1px 0 #bbb, 2px 2px 0 #bbb, 3px 3px #bbb, 4px 4px #bbb,
+               5px 5px 0 #bbb, 6px 6px 0 #bbb, 6px 6px #bbb, 6px 6px #bbb;
+}

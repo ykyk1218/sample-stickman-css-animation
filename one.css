@@ -1,0 +1,178 @@
+#main {
+  position: relative;
+  top: 100px;
+  left: 100px;
+}
+
+#back {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 500px;
+  height: 500px;
+  border: 1px solid #333;
+}
+
+.mountain {
+  overflow: hidden;
+  background: transparent;
+}
+
+#mountain1 {
+  top: 5px;
+  right: 1px;
+}
+
+#mountain2 {
+  top: 50px;
+  right: 1px;
+}
+
+
+#mountain3 {
+  top: 305px;
+  right: 1px;
+}
+
+.mountain::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: inherit;  /* 擬似要素は基本アニメーションしないけど、inheritすればアニメーションする */
+  right: inherit;
+  width: 40px;
+  height: 20px;
+  transform: skewX(-25deg) translate(10px, 20px);
+  background:linear-gradient(
+      45deg,
+      red,
+      red 50%,
+      transparent 50%,
+      transparent 100%);
+  /*background-color: red;*/
+}
+
+#mountain3::before {
+  width: 80px;
+  height: 40px;
+
+}
+
+
+
+#mountain1::before {
+  animation: mountain-animation 30s linear infinite;
+}
+#mountain2::before {
+  animation: mountain-animation 15s linear infinite;
+}
+#mountain3::before {
+  animation: mountain-animation 10s linear infinite;
+}
+
+#head {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid #333;
+}
+
+#eye {
+  position: absolute;
+  top: 4px;
+  right: 7px;
+  width: 1px;
+  height: 1px;
+  background-color: #333;
+  border-radius: 1px;
+  border: 1px solid #333;
+}
+
+#mouth {
+  position: absolute;
+  top: 20px;
+  right: 4px;
+  background-color: #333;
+  border 1px solid #333;
+  width: 10px;
+  height: 1px;
+}
+
+#body {
+  position: absolute;
+  top: 130px;
+  left: 115px;
+  background-color: #333;
+  width: 1px;
+  height: 30px;
+}
+
+#right-arm {
+  position: absolute;
+  top: 135px;
+  left: 111px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(20deg);
+}
+
+#left-arm {
+  position: absolute;
+  top: 135px;
+  left: 120px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(-20deg);
+}
+
+#right-leg {
+  position: absolute;
+  top: 155px;
+  left: 111px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(30deg);
+  animation: right-walk-animation 2s ease infinite;
+}
+
+#left-leg {
+  position: absolute;
+  top: 155px;
+  left: 120px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(-30deg);
+  animation: left-walk-animation 2s ease infinite;
+}
+
+@keyframes right-walk-animation {
+  0% {left: 111px; transform: rotate(30deg);}
+  50% {left: 120px; transform: rotate(-30deg);}
+  100% {left: 111px; transform: rotate(30deg);}
+}
+
+@keyframes left-walk-animation {
+  0% {left: 120px; transform: rotate(-30deg);}
+  50% {left: 111px; transform: rotate(30deg);}
+  100% {left: 120px; transform: rotate(-30deg);}
+}
+
+@keyframes mountain-animation {
+  from {right: 1px;}
+  to {right: 500px;}
+}
+
+.chkbox {
+  padding-top: 0px;
+}
+
+#walk-stop:checked ~ #left-leg, #walk-stop:checked ~ #right-leg {
+  animation-play-state: paused;
+}

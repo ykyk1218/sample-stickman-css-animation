@@ -1,0 +1,323 @@
+$hadoken-bg: #6666ff;
+$bomb-color: #ef8905;
+
+
+@mixin body {
+  position: absolute;
+  top: 31px;
+  left: 15px;
+  width: 1px;
+  height: 30px;
+  background-color: #333;
+}
+
+@mixin head {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid #333;
+}
+
+@mixin eye {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background-color: #333;
+  border: 1px solid #333;
+  border-radius: 1px;
+}
+
+@mixin mouth {
+  position: absolute;
+  width: 8px;
+  height: 1px;
+  background-color: #333; 
+}
+
+@mixin left-arm {
+  position: absolute;
+  top: 35px;
+  left: 19px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(-20deg);
+}
+
+@mixin right-arm {
+  position: absolute;
+  top: 35px;
+  left: 11px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(20deg);
+}
+
+@mixin left-leg {
+  position: absolute;
+  top: 59px;
+  left: 20px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(-30deg);
+  /*animation: left-walk-animation 2s ease infinite;*/
+}
+
+@mixin right-leg {
+  position: absolute;
+  top: 59px;
+  left: 10px;
+  width: 1px;
+  height: 20px;
+  background-color: #333;
+  transform: rotate(30deg);
+  /*animation: right-walk-animation 2s ease infinite;*/
+}
+
+
+#back {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 500px;
+  height: 500px;
+  border: 1px solid #333;
+}
+
+.mountain {
+  overflow: hidden;
+  background: transparent;
+}
+#mountain1 {
+  top: 5px;
+  right: 1px;
+}
+
+#mountain2 {
+  top: 50px;
+  right: 1px;
+}
+
+
+#mountain3 {
+  top: 305px;
+  right: 1px;
+}
+
+.mountain::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: inherit;  /* 擬似要素は基本アニメーションしないけど、inheritすればアニメーションする */
+  right: inherit;
+  width: 40px;
+  height: 20px;
+  transform: skewX(-25deg) translate(10px, 20px);
+  background:linear-gradient(
+      45deg,
+      red,
+      red 50%,
+      transparent 50%,
+      transparent 100%);
+  /*background-color: red;*/
+}
+
+#mountain3::before {
+  width: 80px;
+  height: 40px;
+
+}
+
+#mountain1::before {
+  animation: mountain-animation 30s linear infinite;
+}
+#mountain2::before {
+  animation: mountain-animation 15s linear infinite;
+}
+#mountain3::before {
+  animation: mountain-animation 10s linear infinite;
+}
+
+@keyframes mountain-animation {
+  from {right: 1px;}
+  to {right: 500px;}
+}
+
+@keyframes head-animation {
+  0% {top: 55px; left: 20px;}
+  10% {top: 55px; left: 20px;}
+  15% {top: 55px; left: 20px;}
+  20% {top: 57px; left: 18px;}
+  25% {top: 50px; left: 15px;}
+  30% {top: 50px; left: 15px;}
+  33% {top: 6px; left: 6px;}
+  34% {top: 5px; left: 5px;}
+  36% {top: 3px; left: 3px;}
+  38% {top: 1px; left: 1px;}
+  40% {top: 0px; left: 0px;}
+  100% {top:0; left: 0;}
+}
+
+@keyframes body-animation {
+  0% {top: 61px; left: 21px; transform: rotate(85deg)}
+  100% {@include body}
+}
+
+@keyframes left-arm-animation {
+  0% {top: 58px; left: 22px; transform: rotate(90deg)}
+  100% {@include left-arm}
+}
+
+@keyframes right-arm-animation {
+  0% {top: 60px; left: 18px; transform: rotate(90deg)}
+  100% {@include right-arm}
+}
+
+@keyframes left-leg-animation {
+  0% {top: 62px; left: 25px; transform: rotate(88deg)}
+  100% {@include left-leg}
+}
+
+@keyframes right-leg-animation {
+  0% {top: 64px; left: 20px; transform: rotate(91deg)}
+  100% {@include right-leg}
+}
+
+
+/*
+@keyframes smoke-animation {
+  0% {
+    background: -webkit-radial-gradient(center, ellipse, #ffffff 0%, rgba(255, 255, 255, 0) 40%) -800px -300px no-repeat, -webkit-radial-gradient(center, ellipse, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 40%) -1200px -600px no-repeat, -webkit-radial-gradient(center, ellipse, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 50%) -750px 0px no-repeat, -webkit-radial-gradient(center, ellipse, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 40%) -600px -450px no-repeat, #000;
+    background: radial-gradient(ellipse at center, #ffffff 0%, rgba(255, 255, 255, 0) 40%) -800px -300px no-repeat, radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 40%) -1200px -600px no-repeat, radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 50%) -750px 0px no-repeat, radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 40%) -600px -450px no-repeat, #000;
+  }
+  100% {
+    background: -webkit-radial-gradient(center, ellipse, #ffffff 0%, rgba(255, 255, 255, 0) 40%) 1000px 1300px no-repeat, -webkit-radial-gradient(center, ellipse, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 40%) 600px 1000px no-repeat, -webkit-radial-gradient(center, ellipse, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 50%) 450px 800px no-repeat, -webkit-radial-gradient(center, ellipse, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 40%) 0px 350px no-repeat, #000;
+    background: radial-gradient(ellipse at center, #ffffff 0%, rgba(255, 255, 255, 0) 40%) 1000px 1300px no-repeat, radial-gradient(ellipse at center, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 40%) 600px 1000px no-repeat, radial-gradient(ellipse at center, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 50%) 450px 800px no-repeat, radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 40%) 0px 350px no-repeat, #000;
+  }
+}
+*/
+
+/*
+@keyframes smoke-animation {
+  0% {
+    background: -webkit-radial-gradient(center, ellipse, #fff 0%, rgba(255, 255, 255, 0) 40%) 200px 200px no-repeat, 
+                -webkit-radial-gradient(center, ellipse, #fff 0%, rgba(255, 255, 255, 0) 40%) 150px 150px no-repeat,
+                -webkit-radial-gradient(center, ellipse, #fff 0%, rgba(255, 255, 255, 0) 40%) 100px 100px no-repeat
+  }
+  100% {
+    background: -webkit-radial-gradient(center, ellipse, #fff 0%, rgba(255, 255, 255, 0) 40%) 200px 200px no-repeat, 
+                -webkit-radial-gradient(center, ellipse, #fff 0%, rgba(255, 255, 255, 0) 40%) 150px 150px no-repeat,
+                -webkit-radial-gradient(center, ellipse, #fff 0%, rgba(255, 255, 255, 0) 40%) 100px 100px no-repeat
+  }
+}
+*/
+
+#human {
+  width: 30px;
+  height: 100px;
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  .head {
+    .eye {
+      @include eye;
+      top: 8px;
+      right: 5px;
+    }
+    .mouth {
+      @include mouth;
+      top: 8px;
+      right: 5px;
+    }
+    animation: head-animation 10s ease-in-out forwards;
+  }
+  transform: scale(2, 2);
+}
+
+.smoke {
+  position: absolute;
+  top: 200px;
+  left: 200px;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #333;
+}
+
+#human, #human2 {
+ .head {@include head;}
+  .body {
+    position: absolute;
+    top: 31px;
+    left: 15px;
+    width: 1px;
+    height: 30px;
+    background-color: #333;
+    animation: body-animation 2.5s ease-in-out forwards;
+  }
+  .left-arm {
+    @include left-arm;
+    animation: left-arm-animation 2.5s ease-in-out forwards;
+  }
+  .right-arm {
+    @include right-arm;
+    animation: right-arm-animation 2.5s ease-in-out forwards;
+  }
+  .left-leg {
+    @include left-leg;
+    animation: left-leg-animation 2.5s ease-in-out forwards;
+  }
+  .right-leg {
+    @include right-leg;
+    animation: right-leg-animation 2.5s ease-in-out forwards;
+  }
+}
+
+.chkbox {
+  padding-top: 0px;
+}
+
+.sound1 {
+  position: absolute;
+  top: 100px;
+  left: 300px;
+  font-size: 1px;
+  transition: all 0.1s linear 0;
+}
+
+.wrap-starburst {
+  position: absolute;
+  top: 200px;
+  left: 180px;
+  width: 100px;
+  height: 100px;
+
+  .starburst {
+    width: 50px;
+    height: 50px;
+    animation: burst-animation 0.3s linear infinite;
+    .star {
+      width:6em;
+      height:6em;
+      background: $bomb-color;
+      transform: rotate(22.5deg);
+    }
+  }
+}
+
+.sound1 {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  font-size: 40px;
+  text-shadow: 1px 1px 0 #bbb, 2px 2px 0 #bbb, 3px 3px #bbb, 4px 4px #bbb;
+}
+
+#burst-start:checked ~ .sound1 {
+  font-size: 4em;
+  font-family: "Impact";
+  text-shadow: 1px 1px 0 #bbb, 2px 2px 0 #bbb, 3px 3px #bbb, 4px 4px #bbb,
+               5px 5px 0 #bbb, 6px 6px 0 #bbb, 6px 6px #bbb, 6px 6px #bbb;
+}

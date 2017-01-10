@@ -1,0 +1,80 @@
+#main {
+  width: 1000px;
+  margin: auto;
+  position: relative;
+  height: 1000px;
+  margin-left: 200px;
+  
+}
+#head {
+  border-radius: 100px;
+  border: 1px solid #333;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+}
+
+#body {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  position: absolute;
+  top: 301px;
+  left: 200px;
+}
+
+#body-line {
+  width: 1px;
+  height: 200px;
+  background-color: #333;
+}
+
+#right-arm {
+  position: absolute;
+  top: 350px;
+  left: 200px;
+}
+
+#right-upper-arm {
+  width: 1px;
+  height: 150px;
+  background-color: #333;
+  transform: rotate(45deg);
+  position: absolute;
+  left: -45px;
+  top: -10px;
+}
+
+#right-elbow {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #333;
+  position: absolute;
+  left: -105px;
+  top: 110px;
+  z-index: 2;
+}
+
+#right-forearm {
+  width: 1px;
+  height: 80px;
+  background-color: #333;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 10px;;
+  left: -143px;
+}
+
+#right-hand {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  border: 1px solid #333;
+  position: absolute;
+  top: -50px;
+  left: -223px;
+}
