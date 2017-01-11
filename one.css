@@ -2,6 +2,8 @@
   position: relative;
   top: 100px;
   left: 100px;
+  width: 500px;
+  height: 400px;
 }
 
 #back {
@@ -10,6 +12,7 @@
   left: 50px;
   width: 500px;
   height: 500px;
+  overflow: hidden;
   border: 1px solid #333;
 }
 
@@ -20,7 +23,7 @@
 
 #mountain1 {
   top: 5px;
-  right: 1px;
+  right: -50px;
 }
 
 #mountain2 {
@@ -52,16 +55,18 @@
   /*background-color: red;*/
 }
 
+#mountain2::before {
+  width: 60px;
+  height: 30px;
+}
+
 #mountain3::before {
   width: 80px;
   height: 40px;
-
 }
 
-
-
 #mountain1::before {
-  animation: mountain-animation 30s linear infinite;
+  animation: mountain-animation 30s linear 5s infinite;
 }
 #mountain2::before {
   animation: mountain-animation 15s linear infinite;
@@ -152,6 +157,18 @@
   animation: left-walk-animation 2s ease infinite;
 }
 
+.text {
+  position: absolute;
+  bottom: 10px;
+  right: -100px;
+  width: 150%;
+  animation: text-animation 20s linear infinite;
+}
+
+.next {
+  margin-top: 150px;
+}
+
 @keyframes right-walk-animation {
   0% {left: 111px; transform: rotate(30deg);}
   50% {left: 120px; transform: rotate(-30deg);}
@@ -169,10 +186,19 @@
   to {right: 500px;}
 }
 
+@keyframes text-animation {
+  0% {right: -700px;}
+  100% {right: 500px;}
+}
+
 .chkbox {
   padding-top: 0px;
 }
 
-#walk-stop:checked ~ #left-leg, #walk-stop:checked ~ #right-leg {
+#walk-stop:checked ~ #left-leg, 
+#walk-stop:checked ~ #right-leg,
+#walk-stop:checked ~ #mountain1, 
+#walk-stop:checked ~ #mountain2,
+#walk-stop:checked ~ #mountain3 {
   animation-play-state: paused;
 }
