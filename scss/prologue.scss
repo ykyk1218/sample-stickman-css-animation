@@ -1,0 +1,66 @@
+$intro-text-color: #4ee;
+$opening-text-color: #ff6;
+
+body {
+  background-color: #000;
+}
+
+#start {
+  margin: 20% auto;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 400;
+  color: $intro-text-color;
+  animation: intro 2s ease-out forwards;
+}
+
+h1 {
+  position: absolute;
+  top: 15%;
+  font-size: 10em;
+  text-align: center;
+  line-height: 0.8em;
+  letter-spacing: -0.01em;
+  color: #000;
+  text-shadow: -2px -2px 0 #ff6, 2px -2px 0 #ff6, -2px 2px 0 #ff6, 2px 2px 0 #ff6;
+  opacity: 0;
+  z-index: 1;
+  animation: logo 5s ease-out 2.5s;
+}
+
+#titles {
+  position: absolute;
+  width: 15em;
+  height: 50em;
+  bottom: 0;
+  left: 0;
+  font-size: 5em;
+  text-align: justify;
+  overflow: hidden;
+  transform-origin: 50% 100%;
+  transform: perspective(300px) rotateX(20deg);
+}
+
+#content {
+  position: absolute;
+  top: 100%;
+  color: $opening-text-color;
+  animation: scroll 100s linear 4s infinite;
+}
+
+@keyframes logo {
+  0% { transform: scale(1); opacity: 1; }
+  50% { opacity: 1; }
+  100% { transform: scale(0.1); opacity: 0; }
+}
+
+@keyframes intro {
+  0%{opacity: 1;}
+  90%{opacity: 1;}
+  100%{opacity: 0;}
+}
+
+@keyframes scroll {
+  0% {top: 100%;}
+  100% {top: -170%;}
+}
