@@ -123,33 +123,34 @@ $hadoken-bg: #6666ff;
   100%{opacity: 100;}
 }
 
+$burst-left-base: -10px;
 @keyframes burst-animation {
-  0% {top: 180px;left: 250px;}
-  5% {top: 178px;left: 245px;}
-  10% {top: 175px;left: 248px;}
-  15% {top: 178px;left: 249px;}
-  20% {top: 183px;left: 254px;}
-  25% {top: 185px;left: 252px;}
-  30% {top: 182px;left: 242px;}
-  35% {top: 180px;left: 230px;}
-  40% {top: 189px;left: 235px;}
-  45% {top: 183px;left: 249px;}
-  50% {top: 175px;left: 252px;}
-  55% {top: 180px;left: 255px;}
-  60% {top: 182px;left: 259px;}
-  65% {top: 185px;left: 252px;}
-  70% {top: 182px;left: 260px;}
-  75% {top: 179px;left: 255px;}
-  80% {top: 175px;left: 249px;}
-  85% {top: 185px;left: 245px;}
-  90% {top: 182px;left: 239px;}
-  95% {top: 174px;left: 246px;}
-  100% {top: 180px;left: 250px;}
+  0% {top: 0px;left: calc(0px - $burst-left-base); opacity: 1;}
+  5% {top: 8px;left: calc(5px - $burst-left-base); opacity: 1;}
+  11% {top: 5px;left: calc(8px - $burst-left-base); opacity: 1;}
+  15% {top: 8px;left: calc(9px - $burst-left-base); opacity: 1;}
+  21% {top: 3px;left: calc(4px - $burst-left-base); opacity: 1;}
+  25% {top: 5px;left: calc(2px - $burst-left-base); opacity: 1;}
+  31% {top: 2px;left: calc(2px - $burst-left-base); opacity: 1;}
+  35% {top: 1px;left: calc(1px - $burst-left-base); opacity: 1;}
+  41% {top: 9px;left: calc(5px - $burst-left-base); opacity: 1;}
+  45% {top: 3px;left: calc(9px - $burst-left-base); opacity: 1;}
+  51% {top: 5px;left: calc(2px - $burst-left-base); opacity: 1;}
+  55% {top: 1px;left: calc(5px - $burst-left-base); opacity: 1;}
+  61% {top: 2px;left: calc(9px - $burst-left-base); opacity: 1;}
+  65% {top: 5px;left: calc(2px - $burst-left-base); opacity: 1;}
+  71% {top: 2px;left: calc(1px - $burst-left-base); opacity: 1;}
+  75% {top: 9px;left: calc(5px - $burst-left-base); opacity: 1;}
+  81% {top: 5px;left: calc(9px - $burst-left-base); opacity: 1;}
+  85% {top: 5px;left: calc(5px - $burst-left-base); opacity: 1;}
+  91% {top: 2px;left: calc(9px - $burst-left-base); opacity: 1;}
+  95% {top: 4px;left: calc(6px - $burst-left-base); opacity: 1;}
+  100% {top:1px;left: calc(1px - $burst-left-base); opacity: 1;}
 }
 
 @keyframes line-of-sight {
   0% {width: 0px;}
-  100% {width: 100px;}
+  100% {width: 114px;}
 }
 
 @mixin head {
@@ -204,7 +205,6 @@ $hadoken-bg: #6666ff;
   height: 20px;
   background-color: #333;
   transform: rotate(-30deg);
-  /*animation: left-walk-animation 2s ease infinite;*/
 }
 
 @mixin right-leg {
@@ -215,7 +215,6 @@ $hadoken-bg: #6666ff;
   height: 20px;
   background-color: #333;
   transform: rotate(30deg);
-  /*animation: right-walk-animation 2s ease infinite;*/
 }
 
 #human {
@@ -243,7 +242,7 @@ $hadoken-bg: #6666ff;
     width: 0px;
     height: 1px;
     background-color: #333;
-    animation: line-of-sight 3s linear 5s forwards;
+    animation: line-of-sight 3s linear 3s forwards;
   }
 }
 
@@ -272,7 +271,7 @@ $hadoken-bg: #6666ff;
     width: 0px;
     height: 1px;
     background-color: #333;
-    animation: line-of-sight 3s linear 5s forwards;
+    animation: line-of-sight 3s linear 3s forwards;
   }
   .right-arm {
     animation: right-arm-animation 0.5s ease forwards;
@@ -399,9 +398,14 @@ $hadoken-bg: #6666ff;
   height: 50px;
 
   .starburst {
+    position: absolute;
+    top:0px;
+    left: -10px;
     width: 25px;
     height: 25px;
-    animation: burst-animation 5s linear infinite;
+    animation: burst-animation 3s linear 6s infinite;
+    opacity: 0;
+    z-index: 2;
     .star {
       width: 3em;
       height: 3em;

@@ -8,6 +8,7 @@ $bomb-color: #ef8905;
   width: 500px;
   height: 500px;
   border: 1px solid #333;
+  overflow: hidden;
 }
 
 .mountain {
@@ -69,9 +70,19 @@ $bomb-color: #ef8905;
   to {right: 500px;}
 }
 
+@keyframes hadoken-animation {
+  0% {width: 10px;}
+  100% {width: 380px;}
+}
+
 @keyframes burst-animation {
-  0% {transform: scale(0.1, 0.1);}
-  100% {transform: scale(1.0, 1.0);}
+  0% {transform: scale(0.1, 0.1); opacity: 1;}
+  100% {transform: scale(1.0, 1.0); opacity: 1;}
+}
+
+@keyframes dogo-animation {
+  0% {opacity:1;}
+  100%{opacity:1;}
 }
 
 @mixin head {
@@ -188,14 +199,6 @@ $bomb-color: #ef8905;
   padding-top: 0px;
 }
 
-.sound1 {
-  position: absolute;
-  top: 100px;
-  left: 300px;
-  font-size: 1px;
-  transition: all 0.1s linear 0;
-}
-
 .wrap-starburst {
   position: absolute;
   top: 200px;
@@ -206,7 +209,8 @@ $bomb-color: #ef8905;
   .starburst {
     width: 50px;
     height: 50px;
-    animation: burst-animation 0.3s linear infinite;
+    opacity: 0;
+    animation: burst-animation 0.3s linear 1s infinite;
     .star {
       width:6em;
       height:6em;
@@ -222,6 +226,20 @@ $bomb-color: #ef8905;
   left: 50px;
   font-size: 40px;
   text-shadow: 1px 1px 0 #bbb, 2px 2px 0 #bbb, 3px 3px #bbb, 4px 4px #bbb;
+  opacity: 0;
+  animation: dogo-animation 0.1s linear 1s forwards;
+}
+
+.hadoken {
+  position: absolute;
+  top: 150px;
+  right: -30px;
+  width: 10px;
+  height: 40px;
+  border-radius: 20px;
+  border: 1px solid $hadoken-bg;
+  background-color: $hadoken-bg;
+  animation: hadoken-animation 1s linear 1;
 }
 
 #burst-start:checked ~ .sound1 {

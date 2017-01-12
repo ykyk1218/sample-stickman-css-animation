@@ -76,9 +76,11 @@ $hadoken-bg: #6666ff;
   100% {left: 20px; transform: rotate(-30deg);}
 }
 
-@keyframes human2-animation {
-  0% {left: 450px; top: 0px; transform: rotate(40deg);}
-  100% {left: 400px; top: 200px; transform: rotate(0deg);}
+@keyframes scale-human2-animation {
+  0% { border: 5px solid #333; transform: scale(1, 1)}
+  20% { border: 5px solid #333; transform: scale(3, 3)}
+  99% { border: 5px solid #333; transform: scale(3, 3)}
+  100% { border: 0px solid #333; transform: scale(1, 1)}
 }
 
 @keyframes mountain-animation {
@@ -121,35 +123,6 @@ $hadoken-bg: #6666ff;
 @keyframes hide-arm-animation {
   0% {opacity: 0;}
   100%{opacity: 100;}
-}
-
-@keyframes burst-animation {
-  0% {top: 180px;left: 250px;}
-  5% {top: 178px;left: 245px;}
-  10% {top: 175px;left: 248px;}
-  15% {top: 178px;left: 249px;}
-  20% {top: 183px;left: 254px;}
-  25% {top: 185px;left: 252px;}
-  30% {top: 182px;left: 242px;}
-  35% {top: 180px;left: 230px;}
-  40% {top: 189px;left: 235px;}
-  45% {top: 183px;left: 249px;}
-  50% {top: 175px;left: 252px;}
-  55% {top: 180px;left: 255px;}
-  60% {top: 182px;left: 259px;}
-  65% {top: 185px;left: 252px;}
-  70% {top: 182px;left: 260px;}
-  75% {top: 179px;left: 255px;}
-  80% {top: 175px;left: 249px;}
-  85% {top: 185px;left: 245px;}
-  90% {top: 182px;left: 239px;}
-  95% {top: 174px;left: 246px;}
-  100% {top: 180px;left: 250px;}
-}
-
-@keyframes line-of-sight {
-  0% {width: 0px;}
-  100% {width: 100px;}
 }
 
 @mixin head {
@@ -247,12 +220,22 @@ $hadoken-bg: #6666ff;
   }
 }
 
+#wrapper-human2 {
+  position: absolute;
+  top: 180px;
+  left: 380px;
+  border: 0px solid #333;
+  width: 100px;
+  height: 150px;
+  animation: scale-human2-animation 5s ease 1s forwards;
+}
+
 #human2 {
   width: 30px;
   height: 100px;
   position: absolute;
-  top: 200px;
-  left: 400px;
+  top: 20px;
+  left: 20px;
   .head {
     .eye { 
       @include eye;
@@ -265,18 +248,8 @@ $hadoken-bg: #6666ff;
       left: 5px;
     }
   }
-  .line-of-sight {
-    position: absolute;
-    top: 8px;
-    right: 35px;
-    width: 0px;
-    height: 1px;
-    background-color: #333;
-    animation: line-of-sight 3s linear 5s forwards;
-  }
-  .right-arm {
-    animation: right-arm-animation 0.5s ease forwards;
-    animation-play-state: paused;
+ .right-arm {
+    animation: right-arm-animation 0.5s ease 3s forwards;
   }
   .hadoken {
     position: absolute;
@@ -288,8 +261,7 @@ $hadoken-bg: #6666ff;
     border-radius: 5px;
     background-color: $hadoken-bg;
     opacity: 0;
-    animation: hadoken-animation 0.1s ease infinite;
-    animation-play-state: paused;
+    animation: hadoken-animation 0.1s ease 3s infinite;
   }
   .hadoken2 {
     position: absolute;
@@ -302,9 +274,8 @@ $hadoken-bg: #6666ff;
     background-color: $hadoken-bg;
     opacity: 0;
     animation: 
-      hadoken2-animation 0.1s ease forwards,
-      hadoken2-animation2 0.3s linear forwards;
-    animation-play-state: paused;
+      hadoken2-animation 0.1s ease 5s forwards,
+      hadoken2-animation2 0.3s linear 5.1s forwards;
   }
   .hadoken2:before {
     position: absolute;
@@ -338,8 +309,7 @@ $hadoken-bg: #6666ff;
     background-color: #333;
     transform: rotate(50deg);
     opacity: 0;
-    animation: left-arm2-animation 0.1s ease forwards;
-    animation-play-state: paused;
+    animation: left-arm2-animation 0.1s ease 5s forwards;
   }
   .right-arm2 {
     position: absolute;
@@ -350,8 +320,7 @@ $hadoken-bg: #6666ff;
     background-color: #333;
     transform: rotate(120deg);
     opacity: 0;
-    animation: right-arm2-animation 0.1s ease forwards;
-    animation-play-state: paused;
+    animation: right-arm2-animation 0.1s ease 5s forwards;
   }
   .hide-arm {
     position: absolute;
@@ -361,10 +330,8 @@ $hadoken-bg: #6666ff;
     height: 25px;
     background-color: #fff;
     opacity: 0;
-    animation: hide-arm-animation 0.1s ease forwards;
-    animation-play-state: paused;
+    animation: hide-arm-animation 0.1s ease 5s forwards;
   }
-  animation: human2-animation 0.5s ease 1;
 }
 
 #human, #human2 {
@@ -418,10 +385,20 @@ $hadoken-bg: #6666ff;
 .sound1 {
   position: absolute;
   top: 100px;
-  left: 300px;
+  left: 100px;
   font-size: 1px;
-  transition: all 0.1s linear 0;
   opacity: 0;
+  animation: sound1-animation 2s ease-in 6s forwards;
+  text-shadow: 1px 1px 0 #bbb, 2px 2px 0 #bbb, 3px 3px #bbb, 4px 4px #bbb;
+}
+
+@keyframes sound1-animation {
+  0% {
+    opacity: 1; font-size:1px;
+  }
+  100% {
+    opacity: 1; font-size: 40px;
+  }
 }
 
 #battle-start:checked ~ #human2 > .right-arm {

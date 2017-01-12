@@ -204,11 +204,12 @@ $bomb-color: #ef8905;
 #wrapper-human {
   position: absolute;
   top: 200px;
-  left: 150px;
+  left: 250px;
   width: 70px;
   height: 160px;
   border: 0px solid #333;
-  animation: scale-human-animation 6.5s linear 1s 1;
+  transform: scale(3,3);
+  /*animation: scale-human-animation 6.5s linear 1s 1;*/
 }
 
 #human {
@@ -219,7 +220,7 @@ $bomb-color: #ef8905;
   left: 10px;
   .head {
     top: 55px;
-    left: 20px;
+    left: 50px;
     .eye {
       @include eye;
       top: 8px;
@@ -230,7 +231,6 @@ $bomb-color: #ef8905;
       top: 8px;
       right: 5px;
     }
-    animation: head-animation 10s ease-in-out 2s forwards;
   }
   transform: scale(1, 1);
 }
@@ -266,35 +266,30 @@ $bomb-color: #ef8905;
     height: 30px;
     background-color: #333;
     transform: rotate(85deg);
-    animation: body-animation 2.5s ease-in-out 2s forwards;
   }
   .left-arm {
     @include left-arm;
     top: 58px;
     left: 22px;
     transform: rotate(90deg);
-    animation: left-arm-animation 2.5s ease-in-out 2s forwards;
   }
   .right-arm {
     @include right-arm;
     top: 60px;
     left: 30px;
     transform: rotate(90deg);
-    animation: right-arm-animation 2.5s ease-in-out 2s forwards;
   }
   .left-leg {
     @include left-leg;
     top: 62px;
     left: 40px;
     transition: rotate(88deg);
-    animation: left-leg-animation 2.5s ease-in-out 2s forwards;
   }
   .right-leg {
     @include right-leg;
     top: 64px;
     left: 20px;
     transform: rotate(91deg);
-    animation: right-leg-animation 2.5s ease-in-out 2s forwards;
   }
 }
 
@@ -354,6 +349,12 @@ h3 {
   font-size: 6em;
   animation: fade-in 1s linear 9s forwards;
   opacity: 0;
+}
+
+.barabara {
+  position: absolute;
+  top: 330px;
+  left: 100px;
 }
 
 #burst-start:checked ~ .sound1 {

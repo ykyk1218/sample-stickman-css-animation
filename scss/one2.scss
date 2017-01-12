@@ -8,7 +8,7 @@ $hadoken-bg: #6666ff;
   height: 500px;
   background: linear-gradient(to right bottom, transparent 49%, #333 50%, transparent 51%);
   background-size: 30px;
-  animation: back-animation 10s linear infinite;
+  /*animation: back-animation 10s linear infinite;*/
 }
 
 @keyframes back-animation {
@@ -104,119 +104,7 @@ $hadoken-bg: #6666ff;
   }
 }
 
-#human2 {
-  border: 1px solid #333;
-  width: 30px;
-  height: 100px;
-  position: absolute;
-  top: 200px;
-  left: 400px;
-  .head {
-    .eye { 
-      @include eye;
-      top: 8px;
-      left: 5px;
-    }
-    .mouth {
-      @include mouth;
-      top: 18px;
-      left: 5px;
-    }
-  }
-  .right-arm {
-    animation: right-arm-animation 0.5s ease forwards;
-    animation-play-state: paused;
-  }
-  .hadoken {
-    position: absolute;
-    top: 50px;
-    left: 20px;
-    width: 10px;
-    height: 10px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    background-color: $hadoken-bg;
-    opacity: 0;
-    animation: hadoken-animation 0.1s ease infinite;
-    animation-play-state: paused;
-  }
-  .hadoken2 {
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    width: 30px;
-    height: 30px;
-    border: 1px solid $hadoken-bg;
-    border-radius: 15px;
-    background-color: $hadoken-bg;
-    opacity: 0;
-    animation: 
-      hadoken2-animation 0.1s ease forwards,
-      hadoken2-animation2 0.3s linear forwards;
-    animation-play-state: paused;
-  }
-  .hadoken2:before {
-    position: absolute;
-    top: 0px;
-    left: -20px;
-    width: inherit;
-    height: 15px;
-    transform: skew(120deg);
-    display: block;
-    content: "";
-    background-color: $hadoken-bg;
-  }
-  .hadoken2:after{
-    position: absolute;
-    top: 15px;
-    left: -20px;
-    width: inherit;
-    height: 15px;
-    transform: skew(-120deg);
-    display: block;
-    content: "";
-    background-color: $hadoken-bg;
-  }
-
-  .left-arm2 {
-    position: absolute;
-    top: 35px;
-    left: 5px;
-    width: 1px;
-    height: 20px;
-    background-color: #333;
-    transform: rotate(50deg);
-    opacity: 0;
-    animation: left-arm2-animation 0.1s ease forwards;
-    animation-play-state: paused;
-  }
-  .right-arm2 {
-    position: absolute;
-    top: 25px;
-    left: 5px;
-    width: 1px;
-    height: 20px;
-    background-color: #333;
-    transform: rotate(120deg);
-    opacity: 0;
-    animation: right-arm2-animation 0.1s ease forwards;
-    animation-play-state: paused;
-  }
-  .hide-arm {
-    position: absolute;
-    top: 37px;
-    left: 16px;
-    width: 20px;
-    height: 25px;
-    background-color: #fff;
-    opacity: 0;
-    animation: hide-arm-animation 0.1s ease forwards;
-    animation-play-state: paused;
-  }
-  animation: human2-animation 0.5s ease 1;
-}
-
-#human, #human2 {
+#human {
  .head {@include head;}
   .body {
     position: absolute;
@@ -254,18 +142,17 @@ $hadoken-bg: #6666ff;
 
 .hukidashi {
   position: absolute;
-  top: 100px;
-  left: 300px;
+  top: 40px;
+  left: 250px;
   width: 200px;
-  border: 1px solid #333;
+  height: 100px;
 
   .hukidashi-in {
     width: 50px;
-    height: 120px;
-    border-top: 1px solid #333;
-    border-bottom: 1px solid #333;
-    background-color: #fff;
+    height: 50px;
+    border-bottom: 15px solid #333;
     border-radius: 25px;
+    background-color: transparent;
     position: absolute;
   }
 
@@ -280,23 +167,19 @@ $hadoken-bg: #6666ff;
   }
 
   .fur1 {top: 0px; left: 10px;}
-  .fur2 {top: 0px; left: 40px;}
-  .fur3 {top: 0px; left: 70px;}
-  .fur4 {top: 0px; left: 100px;}
-  .fur5 {top: 0px; left: 130px;}
-  
-  .fur6 {top: 30px; left: 0px;}
-  .fur7 {top: 60px; left: 0px;}
-
-  .mu {
-    position: absolute;
-    text-align: center;
-    top: 10px;
-    left: 30px;
-    font-size: 2em;
-  }
- 
+  .fur2 {top: 25px; left: 60px; transform: rotate(60deg);}
+  .fur3 {top: 75px; left: 75px; transform: rotate(90deg);}
+  .fur4 {top: 120px; left: 56px; transform: rotate(120deg);}
 }
+
+.mu {
+  position: absolute;
+  text-align: center;
+  top: 30px;
+  left: 330px;
+  font-size: 4em;
+}
+ 
 
 #battle-start:checked ~ #human2 > .right-arm {
   animation-play-state: running;
